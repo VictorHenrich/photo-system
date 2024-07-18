@@ -20,12 +20,12 @@ async def resize_image(
 ) -> JSONSuccessResponse:
     file_service: FileService = FileService()
 
-    filecontent: bytes = await body.read()
+    content: bytes = await body.read()
 
     filename: str = body.filename or ""
 
     file_service.send_to_resize_picture(
-        filecontent=filecontent, filename=filename, width=int(width), height=int(height)
+        content=content, filename=filename, width=int(width), height=int(height)
     )
 
     return JSONSuccessResponse(content=None)

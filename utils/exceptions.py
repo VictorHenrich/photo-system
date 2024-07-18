@@ -9,3 +9,19 @@ class ServiceError(Exception):
         )
 
         super().__init__(error_message)
+
+
+class FileExtensionNotFoundError(Exception):
+    def __init__(self, content_type: str) -> None:
+        error_message: str = (
+            f"Unable to find file extension by content-type: {content_type}"
+        )
+
+        super().__init__(error_message)
+
+
+class FileTypeNotFoundError(Exception):
+    def __init__(self, url: str) -> None:
+        error_message: str = f"File type not found by url: {url}"
+
+        super().__init__(error_message)

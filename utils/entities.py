@@ -7,3 +7,13 @@ class IndexEntity(BaseModel):
     version: str = SWAGGER_API_VERSION
     name: str = "APPLICATION"
     description: str = "APLICATION RUNNING"
+
+
+class ResizingEntity(BaseModel):
+    filename: str
+
+    content_base64: str
+
+    width: int
+
+    height: int

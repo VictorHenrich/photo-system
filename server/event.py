@@ -1,6 +1,7 @@
 from typing import Any, Callable, List, Optional, Sequence, TypeAlias
 from threading import Thread
 from kafka import KafkaConsumer, KafkaProducer
+import logging
 
 from utils.constants import BROKER_KAFKA_URL
 
@@ -58,6 +59,10 @@ class AppEvents:
             Thread(target=listener.start, args=(None, True))
             for listener in self.__listeners
         ]
+
+        logging.info("...Initializing  Workers...")
+
+        logging.info(f"Total Workers: {len(threads)}")
 
         [thread.start() for thread in threads]
 

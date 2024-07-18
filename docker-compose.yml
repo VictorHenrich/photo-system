@@ -1,12 +1,12 @@
 version: "2"
 
 services:
-  http:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
+  # http:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8000:8000"
   zookeeper:
     image: docker.io/bitnami/zookeeper:3.9
     ports:
