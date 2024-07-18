@@ -1,8 +1,13 @@
 from typing import Union
-from fastapi import UploadFile, File
+from fastapi import UploadFile
 
 from server.instances import AppInstances
-from utils.constants import INDEX_ENDPOINT_URL, RESIZE_PICTURE_ENDPOINT_URL
+from utils.constants import (
+    INDEX_ENDPOINT_URL,
+    RESIZE_PICTURE_ENDPOINT_URL,
+    DEFAULT_PICTURE_HEIGHT_SIZE,
+    DEFAULT_PICTURE_WIDTH_SIZE,
+)
 from utils.responses import JSONSuccessResponse, JSONErrorResponse
 from utils.entities import IndexEntity
 from utils.exceptions import ServiceError
@@ -18,7 +23,9 @@ async def index() -> JSONSuccessResponse[IndexEntity]:
 
 @AppInstances.api.post(RESIZE_PICTURE_ENDPOINT_URL)
 async def resize_image(
-    body: UploadFile = File(), width: str = "300", height: str = "300"
+    body: UploadFile,
+    width: str = DEFAULT_PICTURE_WIDTH_SIZE,
+    height: str = DEFAULT_PICTURE_HEIGHT_SIZE,
 ) -> Union[JSONSuccessResponse, JSONErrorResponse]:
     file_service: FileService = FileService()
 

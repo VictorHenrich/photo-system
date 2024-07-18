@@ -15,8 +15,12 @@ class ControllersTestCase(TestCase):
     def test_resize_image(self) -> None:
         file_url: str = str(ASSETS_PATH / "test.jpg")
 
+        width: str = "200"
+
+        height: str = "200"
+
         with open(file_url, mode="rb") as file:
-            params: DictType[str] = {"width": "1000", "height": "1000"}
+            params: DictType[str] = {"width": width, "height": height}
 
             files: DictType = {
                 "body": (file.name, file, FileUtils.get_content_type(file_url))
