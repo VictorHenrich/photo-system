@@ -33,7 +33,6 @@ services:
     depends_on:
       - zookeeper
       - kafka
-      - http
 
   http:
     build:
