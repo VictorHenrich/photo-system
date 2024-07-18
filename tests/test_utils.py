@@ -12,9 +12,13 @@ class UtilsTestCase(TestCase):
 
         logging.info(f"Content Type: {content_type}")
 
+        self.assertEqual(content_type, "image/jpeg")
+
     def test_get_extension(self) -> None:
         content_type: str = "image/jpeg"
 
         extension: str = FileUtils.get_extension(content_type)
 
         logging.info(f"Extension: {extension}")
+
+        self.assertEqual(extension, "jpg")
