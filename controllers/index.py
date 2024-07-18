@@ -1,4 +1,4 @@
-from fastapi import UploadFile
+from fastapi import UploadFile, File
 
 from server.instances import AppInstances
 from utils.constants import INDEX_ENDPOINT_URL, RESIZE_PICTURE_ENDPOINT_URL
@@ -16,7 +16,7 @@ async def index() -> JSONSuccessResponse[IndexEntity]:
 
 @AppInstances.api.post(RESIZE_PICTURE_ENDPOINT_URL)
 async def resize_image(
-    body: UploadFile, width: str = "300", height: str = "300"
+    body: UploadFile = File(), width: str = "300", height: str = "300"
 ) -> JSONSuccessResponse:
     file_service: FileService = FileService()
 
