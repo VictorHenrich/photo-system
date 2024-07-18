@@ -39,8 +39,6 @@ services:
     build:
       context: .
       dockerfile: Event.Dockerfile
-    ports:
-      - "7000:7000"
     depends_on:
       - zookeeper
       - kafka
