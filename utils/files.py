@@ -31,23 +31,23 @@ class FileUtils:
         extensions: Sequence[str] = mimetypes.guess_all_extensions(content_type)
 
         try:
-            return extensions[0]
+            return extensions[0].split(".")[1]
 
         except IndexError:
             raise FileExtensionNotFoundError(content_type)
 
     @staticmethod
-    def get_content_type(url: str):
+    def get_content_type(url: str) -> str:
         types: Sequence[Optional[str]] = mimetypes.guess_type(url)
 
         try:
             type: Optional[str] = types[0]
 
         except IndexError:
-            FileTypeNotFoundError(url)
+            raise FileTypeNotFoundError(url)
 
         else:
             if type is None:
-                FileTypeNotFoundError(url)
+                raise FileTypeNotFoundError(url)
 
             return type

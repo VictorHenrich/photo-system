@@ -4,7 +4,7 @@ from base64 import b64encode
 from pathlib import Path
 
 from server.event import AppProducer
-from utils.constants import PICTURE_RESIZING_TOPIC, ASSETS_PATH
+from utils.constants import PICTURE_RESIZING_TOPIC
 from utils.entities import ResizingEntity
 
 
@@ -12,13 +12,18 @@ class FileService:
     def resize_picture(
         self, picture: BytesIO, format: str, width: int, height: int
     ) -> BytesIO:
-        picture_data: ImageFile.ImageFile = Image.open(picture, formats=[format])
+        format_: str = format
+
+        if format.lower().startswith("jpg"):
+            format_ = "jpeg"
+
+        picture_data: ImageFile.ImageFile = Image.open(picture, formats=[format_])
 
         resized_picture: Image.Image = picture_data.resize((width, height))
 
         picture_io: BytesIO = BytesIO()
 
-        resized_picture.save(picture_io, format=format)
+        resized_picture.save(picture_io, format=format_)
 
         picture_io.seek(0)
 

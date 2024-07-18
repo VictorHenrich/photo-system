@@ -28,7 +28,7 @@ def resize_picture(message: Any) -> None:
 
     height: int = body["height"]
 
-    format: str = FileUtils.get_extension(filename)
+    format: str = FileUtils.get_extension(FileUtils.get_content_type(filename))
 
     picture: BytesIO = file_service.resize_picture(
         picture=file_content, format=format, width=width, height=height
@@ -37,3 +37,5 @@ def resize_picture(message: Any) -> None:
     file_path: Path = ASSETS_PATH / filename
 
     file_service.save_picture(picture, file_path)
+
+    logging.info("...Processed image...")

@@ -34,9 +34,9 @@ class ServicesTestCase(TestCase):
 
         file_path: Path = Path.cwd() / "assets" / "test.jpg"
 
-        width: int = 1000
+        width: int = 100
 
-        height: int = 1000
+        height: int = 100
 
         with open(file_path, mode="rb+") as file:
             file_service.send_to_resize_picture(
