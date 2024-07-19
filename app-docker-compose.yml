@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  event:
+      build:
+        context: .
+        dockerfile: Event.Dockerfile
+      depends_on:
+        - event
+      volumes:
+      - "http_assets:/app/assets"
+      
+  http:
+      build:
+        context: .
+        dockerfile: Http.Dockerfile
+      ports:
+        - "8000:8000"
